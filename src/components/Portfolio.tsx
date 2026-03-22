@@ -1,0 +1,207 @@
+import { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { ArrowRight, Folder, Globe, Smartphone, Cloud } from 'lucide-react';
+
+type Category = 'All' | 'Web' | 'Mobile' | 'Cloud';
+
+const projects = [
+  {
+    id: 1,
+    title: 'EnviroMaster',
+    client: 'US Environmental Corp.',
+    category: 'Web' as Category,
+    tags: ['React', 'Node.js', 'PostgreSQL', 'AWS', 'Docker'],
+    desc: 'Real-time environmental monitoring dashboard for a US-based enterprise client. Tracks air quality, emissions, and regulatory compliance metrics across 200+ sensor stations with live alerts and audit-ready reporting.',
+    impact: '200+ sensors · 99.99% uptime · OSHA compliant',
+    icon: Globe,
+    gradient: 'from-cyan-500/20 to-blue-500/10',
+    accentColor: 'text-cyan-400',
+    badgeColor: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  },
+  {
+    id: 2,
+    title: 'SmartInventory Pro',
+    client: 'Multi-Warehouse Retail Chain',
+    category: 'Web' as Category,
+    tags: ['React', 'Spring Boot', 'PostgreSQL', 'Redis', 'Kubernetes'],
+    desc: 'Enterprise inventory management platform handling real-time stock updates across 50+ warehouses. Features barcode scanning, automated reorder triggers, vendor management, and an analytics dashboard with predictive stock forecasting.',
+    impact: '50+ warehouses · 1M+ SKUs tracked · 40% waste reduction',
+    icon: Folder,
+    gradient: 'from-violet-500/20 to-purple-500/10',
+    accentColor: 'text-violet-400',
+    badgeColor: 'bg-violet-500/10 text-violet-400 border-violet-500/20',
+  },
+  {
+    id: 3,
+    title: 'HealthBridge Mobile',
+    client: 'Healthcare Network',
+    category: 'Mobile' as Category,
+    tags: ['React Native', 'Node.js', 'MongoDB', 'GCP', 'HIPAA'],
+    desc: 'Cross-platform patient engagement app connecting patients with care teams. Features secure messaging, appointment scheduling, prescription tracking, and telemedicine video calls — fully HIPAA compliant.',
+    impact: '10K+ patients · HIPAA certified · 4.8★ App Store',
+    icon: Smartphone,
+    gradient: 'from-emerald-500/20 to-teal-500/10',
+    accentColor: 'text-emerald-400',
+    badgeColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+  },
+  {
+    id: 4,
+    title: 'LoanFlow Platform',
+    client: 'FinTech Startup',
+    category: 'Web' as Category,
+    tags: ['React', 'Django', 'PostgreSQL', 'Celery', 'AWS'],
+    desc: 'End-to-end loan origination and management platform. Automates credit scoring, document verification, approval workflows, and EMI scheduling for personal and business loans with real-time credit bureau integration.',
+    impact: '$50M+ loans processed · 3-min approval time · SOC2 compliant',
+    icon: Globe,
+    gradient: 'from-amber-500/20 to-orange-500/10',
+    accentColor: 'text-amber-400',
+    badgeColor: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+  },
+  {
+    id: 5,
+    title: 'CloudOps Autopilot',
+    client: 'SaaS Infrastructure Company',
+    category: 'Cloud' as Category,
+    tags: ['Kubernetes', 'Terraform', 'GCP', 'Azure', 'Prometheus'],
+    desc: 'Multi-cloud infrastructure automation platform. Provisions, monitors, and auto-scales containerized workloads across GCP and Azure with cost optimization, anomaly detection, and runbook automation.',
+    impact: '60% infra cost reduction · Auto-healing · Multi-region HA',
+    icon: Cloud,
+    gradient: 'from-sky-500/20 to-indigo-500/10',
+    accentColor: 'text-sky-400',
+    badgeColor: 'bg-sky-500/10 text-sky-400 border-sky-500/20',
+  },
+  {
+    id: 6,
+    title: 'DeliveryTrack App',
+    client: 'Logistics Enterprise',
+    category: 'Mobile' as Category,
+    tags: ['Flutter', 'Spring Boot', 'MySQL', 'Firebase', 'Google Maps'],
+    desc: 'Real-time delivery tracking application for drivers and customers. Live GPS tracking, proof-of-delivery photo capture, route optimization, and customer notification workflows built with Flutter for iOS and Android.',
+    impact: '5K+ deliveries/day · Sub-2s map refresh · 99.5% delivery accuracy',
+    icon: Smartphone,
+    gradient: 'from-rose-500/20 to-pink-500/10',
+    accentColor: 'text-rose-400',
+    badgeColor: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
+  },
+];
+
+const categories: Category[] = ['All', 'Web', 'Mobile', 'Cloud'];
+
+export default function Portfolio() {
+  const [active, setActive] = useState<Category>('All');
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+
+  const filtered = active === 'All' ? projects : projects.filter((p) => p.category === active);
+
+  return (
+    <section id="portfolio" className="py-28 relative" ref={ref}>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-surface/30 to-transparent pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <div className="flex justify-center mb-5">
+            <span className="section-badge">
+              <Folder size={12} />
+              Our Work
+            </span>
+          </div>
+          <h2 className="section-title mb-5">
+            Projects That{' '}
+            <span className="gradient-text">Define Standards</span>
+          </h2>
+          <p className="section-desc mx-auto">
+            A selection of enterprise projects we've architected and delivered —
+            each solving real business problems at scale.
+          </p>
+        </motion.div>
+
+        {/* Filter tabs */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex justify-center gap-2 mb-12"
+        >
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActive(cat)}
+              className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-250 ${
+                active === cat
+                  ? 'bg-gradient-primary text-white shadow-button'
+                  : 'glass text-slate-400 hover:text-white border border-white/[0.07] hover:border-white/[0.15]'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Project grid */}
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+          {filtered.map((proj, i) => (
+            <motion.div
+              key={proj.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              layout
+              className={`glass-card rounded-2xl p-7 bg-gradient-to-br ${proj.gradient} group`}
+            >
+              {/* Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="card-icon-wrap">
+                  <proj.icon size={20} className={proj.accentColor} />
+                </div>
+                <span className={`text-[11px] font-semibold px-3 py-1 rounded-full border ${proj.badgeColor}`}>
+                  {proj.category}
+                </span>
+              </div>
+
+              <h3 className="font-display font-700 text-[1.1rem] text-white mb-1">
+                {proj.title}
+              </h3>
+              <p className="text-xs text-slate-500 mb-4">{proj.client}</p>
+              <p className="text-slate-400 text-sm leading-[1.8] mb-5">{proj.desc}</p>
+
+              {/* Impact */}
+              <div className="bg-white/[0.03] border border-white/[0.05] rounded-xl px-4 py-3 mb-5">
+                <p className="text-xs text-slate-500 font-mono">{proj.impact}</p>
+              </div>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2">
+                {proj.tags.map((tag) => (
+                  <span key={tag} className="tag">{tag}</span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-center mt-14"
+        >
+          <p className="text-slate-500 text-sm mb-5">
+            Want to see more? We'd love to share relevant case studies.
+          </p>
+          <a href="#contact" className="btn-primary inline-flex items-center gap-2 text-sm">
+            Request Full Portfolio
+            <ArrowRight size={16} />
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
