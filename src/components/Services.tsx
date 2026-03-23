@@ -71,7 +71,7 @@ export default function Services() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="services" className="py-28 relative" ref={ref}>
+    <section id="services" className="py-16 md:py-24 lg:py-28 relative" ref={ref}>
       {/* Section glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/[0.04] rounded-full blur-[100px] pointer-events-none" />
 

@@ -29,7 +29,7 @@ const dashboard = await clicksolver
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-20 pb-12 md:pt-24 md:pb-16 overflow-hidden">
       {/* Background layers */}
       <div className="absolute inset-0 bg-gradient-hero pointer-events-none" />
       <div className="absolute inset-0 dot-grid opacity-40 pointer-events-none" />
@@ -61,7 +61,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display font-[900] text-5xl xl:text-[3.75rem] leading-[1.06] tracking-[-0.04em] text-white mb-6"
+              className="font-display font-[900] text-[2.4rem] sm:text-5xl xl:text-[3.75rem] leading-[1.06] tracking-[-0.04em] text-white mb-6"
             >
               We Build Software{' '}
               <span className="gradient-text block">That Scales,</span>
@@ -73,7 +73,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="text-slate-400 text-lg leading-[1.75] mb-8 max-w-lg"
+              className="text-slate-400 text-base sm:text-lg leading-[1.75] mb-8 max-w-lg"
             >
               From greenfield architecture to legacy modernization — we deliver
               enterprise-grade applications with clean code, bulletproof security,
@@ -100,13 +100,13 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4"
             >
-              <a href="#contact" className="btn-primary flex items-center gap-2 text-sm">
+              <a href="#contact" className="btn-primary flex items-center justify-center gap-2 text-sm w-full sm:w-auto">
                 Start Your Project
                 <ArrowRight size={16} />
               </a>
-              <a href="#portfolio" className="btn-ghost flex items-center gap-2 text-sm">
+              <a href="#portfolio" className="btn-ghost flex items-center justify-center gap-2 text-sm w-full sm:w-auto">
                 <span className="w-8 h-8 rounded-full flex items-center justify-center bg-white/[0.08] border border-white/[0.1]">
                   <Play size={12} fill="white" className="text-white ml-0.5" />
                 </span>

@@ -95,7 +95,7 @@ export default function Portfolio() {
   const filtered = active === 'All' ? projects : projects.filter((p) => p.category === active);
 
   return (
-    <section id="portfolio" className="py-28 relative" ref={ref}>
+    <section id="portfolio" className="py-16 md:py-24 lg:py-28 relative" ref={ref}>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-surface/30 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
@@ -127,7 +127,7 @@ export default function Portfolio() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex justify-center gap-2 mb-12"
+          className="flex flex-wrap justify-center gap-2 mb-10 md:mb-12"
         >
           {categories.map((cat) => (
             <button
