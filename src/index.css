@@ -87,7 +87,7 @@
     background: linear-gradient(135deg, #6366F1, #8B5CF6);
     color: white;
     font-weight: 600;
-    padding: 14px 28px;
+    padding: 12px 22px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
@@ -95,6 +95,12 @@
     box-shadow: 0 4px 24px rgba(99, 102, 241, 0.35);
     position: relative;
     overflow: hidden;
+  }
+
+  @media (min-width: 640px) {
+    .btn-primary {
+      padding: 14px 28px;
+    }
   }
 
   .btn-primary::before {
@@ -119,11 +125,17 @@
     background: rgba(255, 255, 255, 0.04);
     color: #E2E8F0;
     font-weight: 500;
-    padding: 14px 28px;
+    padding: 12px 22px;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
     transition: all 0.3s ease;
+  }
+
+  @media (min-width: 640px) {
+    .btn-ghost {
+      padding: 14px 28px;
+    }
   }
 
   .btn-ghost:hover {
@@ -157,10 +169,16 @@
   }
 
   .section-desc {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.7;
     color: #94A3B8;
     max-width: 560px;
+  }
+
+  @media (min-width: 640px) {
+    .section-desc {
+      font-size: 1.1rem;
+    }
   }
 
   .card-icon-wrap {

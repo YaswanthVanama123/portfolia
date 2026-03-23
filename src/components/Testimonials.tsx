@@ -64,7 +64,7 @@ export default function Testimonials() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="testimonials" className="py-28 relative overflow-hidden" ref={ref}>
+    <section id="testimonials" className="py-16 md:py-24 lg:py-28 relative overflow-hidden" ref={ref}>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-surface/40 to-transparent pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/[0.04] rounded-full blur-[120px] pointer-events-none" />
 

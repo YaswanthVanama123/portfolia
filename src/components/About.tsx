@@ -38,7 +38,7 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="about" className="py-28 relative overflow-hidden" ref={ref}>
+    <section id="about" className="py-16 md:py-24 lg:py-28 relative overflow-hidden" ref={ref}>
       <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" />
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-secondary/[0.05] rounded-full blur-[100px] pointer-events-none" />
 
@@ -67,7 +67,7 @@ export default function About() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-14 xl:gap-20 items-start mb-20">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-14 xl:gap-20 items-start mb-16 md:mb-20">
           {/* Left — Story */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -146,10 +146,32 @@ export default function About() {
           <h3 className="font-display font-700 text-xl text-white text-center mb-10">
             Our Journey
           </h3>
-          <div className="relative">
-            {/* Line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/30 to-transparent hidden lg:block" />
 
+          {/* Mobile & tablet: vertical list with left border */}
+          <div className="relative lg:hidden pl-6 border-l border-primary/20 space-y-6">
+            {milestones.map((m, i) => (
+              <motion.div
+                key={m.year}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
+                className="relative"
+              >
+                {/* Dot */}
+                <span className="absolute -left-[1.55rem] top-4 w-3 h-3 rounded-full bg-gradient-primary border-2 border-bg" />
+                <div className="glass-card rounded-xl p-4 sm:p-5">
+                  <span className="font-mono text-primary-light text-sm font-600 mb-1.5 block">
+                    {m.year}
+                  </span>
+                  <p className="text-slate-300 text-sm leading-[1.7]">{m.event}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Desktop: alternating layout */}
+          <div className="relative hidden lg:block">
+            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/30 to-transparent" />
             <div className="space-y-6">
               {milestones.map((m, i) => (
                 <motion.div
@@ -157,11 +179,9 @@ export default function About() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
-                  className={`flex gap-6 items-start ${
-                    i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                  }`}
+                  className={`flex gap-6 items-start ${i % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
                 >
-                  <div className={`lg:w-1/2 ${i % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
+                  <div className={`w-1/2 ${i % 2 === 0 ? 'text-right' : 'text-left'}`}>
                     <div className="glass-card rounded-xl p-5">
                       <span className="font-mono text-primary-light text-sm font-600 mb-2 block">
                         {m.year}
@@ -169,9 +189,8 @@ export default function About() {
                       <p className="text-slate-300 text-sm leading-[1.7]">{m.event}</p>
                     </div>
                   </div>
-                  {/* Center dot */}
-                  <div className="hidden lg:flex items-center justify-center w-4 h-4 rounded-full bg-gradient-primary border-2 border-bg flex-shrink-0 mt-4 self-start" style={{ marginTop: '22px' }} />
-                  <div className="lg:w-1/2" />
+                  <div className="flex items-center justify-center w-4 h-4 rounded-full bg-gradient-primary border-2 border-bg flex-shrink-0 self-start" style={{ marginTop: '22px' }} />
+                  <div className="w-1/2" />
                 </motion.div>
               ))}
             </div>

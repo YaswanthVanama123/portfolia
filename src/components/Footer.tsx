@@ -22,7 +22,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/[0.06] pt-20 pb-10 overflow-hidden">
+    <footer className="relative border-t border-white/[0.06] pt-14 md:pt-20 pb-8 md:pb-10 overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-primary/[0.04] rounded-full blur-[80px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -32,11 +32,11 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative glass rounded-2xl p-10 md:p-14 text-center mb-20 overflow-hidden border border-white/[0.08]"
+          className="relative glass rounded-2xl p-7 sm:p-10 md:p-14 text-center mb-14 md:mb-20 overflow-hidden border border-white/[0.08]"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.08] to-secondary/[0.05]" />
           <div className="relative z-10">
-            <h2 className="font-display font-[900] text-3xl md:text-4xl text-white tracking-tight mb-4">
+            <h2 className="font-display font-[900] text-2xl sm:text-3xl md:text-4xl text-white tracking-tight mb-4">
               Ready to build something{' '}
               <span className="gradient-text">extraordinary?</span>
             </h2>
@@ -55,7 +55,7 @@ export default function Footer() {
         </motion.div>
 
         {/* Links grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-10 md:mb-14">
           {/* Brand col */}
           <div className="col-span-2 md:col-span-1">
             <a href="#" className="flex items-center gap-2.5 mb-5">
@@ -109,7 +109,7 @@ export default function Footer() {
           <p className="text-slate-600 text-xs">
             © {new Date().getFullYear()} ClickSolver. All rights reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center sm:justify-start gap-4 sm:gap-6">
             {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item) => (
               <a key={item} href="#" className="text-slate-600 hover:text-slate-400 text-xs transition-colors">
                 {item}

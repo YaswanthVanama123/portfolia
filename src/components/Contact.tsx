@@ -173,7 +173,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 relative overflow-hidden" ref={ref}>
+    <section id="contact" className="py-16 md:py-24 lg:py-28 relative overflow-hidden" ref={ref}>
       <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-primary/[0.06] rounded-full blur-[120px] pointer-events-none" />
 
@@ -290,7 +290,7 @@ export default function Contact() {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="glass-card rounded-2xl p-7 space-y-5"
+                className="glass-card rounded-2xl p-5 sm:p-7 space-y-5"
               >
                 <div className="grid sm:grid-cols-2 gap-5">
                   {[

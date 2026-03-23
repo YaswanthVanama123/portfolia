@@ -159,8 +159,8 @@ export default function TechStack() {
 
         {/* Marquee tech band */}
         <div className="relative overflow-hidden py-5 border-y border-white/[0.06]">
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-bg to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-bg to-transparent z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-10 sm:w-24 bg-gradient-to-r from-bg to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-10 sm:w-24 bg-gradient-to-l from-bg to-transparent z-10" />
           <div className="flex gap-6 animate-marquee whitespace-nowrap">
             {[...allTechs, ...allTechs].map((tech, i) => (
               <span
